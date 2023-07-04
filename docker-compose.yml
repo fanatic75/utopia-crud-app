@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - crud-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 0.0.0.0:8000:8000
+    volumes:
+      - ./:/app
+volumes:
+  crud-data:
